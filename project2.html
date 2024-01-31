@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chemistry Quiz Game</title>
+    <style>
+        <body>
+            <div class="background">
+            </div>   
+        </body>
+        body {
+            font-family: 'Times New Roman', Times, serif, sans-serif;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            background-image: url('C:\Users\Qabas Alkhatib\Pictures\11.jpg'); /* C:\Users\Qabas Alkhatib\Pictures\11.jpg */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        h1, h2 {
+            color: #021122;
+        }
+        button {
+            background-color: #eda5e8;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #04172c;
+        }
+    </style>
+</head>
+<body>
+    <h1>Chemistry Quiz Game</h1>
+    <div id="question"></div>
+    <div id="options"></div>
+    <button onclick="checkAnswer()">Next Question</button>
+
+    <script>
+        // Define quiz questions and answers
+        var questions = [
+            {
+                question: "What is the chemical symbol for water?",
+                options: ["H2O", "CO2", "NaCl", "O2"],
+                answer: "H2O"
+            },
+            {
+                question: "Which element has the chemical symbol 'Fe'?",
+                options: ["Iron", "Gold", "Silver", "Copper"],
+                answer: "Iron"
+            },
+            {
+                question: "What is the atomic number of carbon?",
+                options: ["6", "8", "12", "16"],
+                answer: "6"
+            },
+            {
+                question: "What is the main gas found in the air we breathe?",
+                options: ["Iron", "Gold", "Hydrogen", "Nitrogen"],
+                answer: "Nitrogen"
+            },
+        ];
+
+        var currentQuestionIndex = 0;
+
+        // Display current question and options
+        function displayQuestion() {
+            var currentQuestion = questions[currentQuestionIndex];
+            document.getElementById("question").innerText = currentQuestion.question;
+            var optionsHTML = "";
+            currentQuestion.options.forEach(function(option) {
+                optionsHTML += "<button onclick=\"checkAnswer('" + option + "')\">" + option + "</button>";
+            });
+            document.getElementById("options").innerHTML = optionsHTML;
+        }
+
+        // Check if selected answer is correct
+        function checkAnswer(selectedAnswer) {
+            var currentQuestion = questions[currentQuestionIndex];
+            if (selectedAnswer === currentQuestion.answer) {
+                alert("Correct!");
+            } else {
+                alert("Incorrect. The correct answer is: " + currentQuestion.answer);
+            }
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                displayQuestion();
+            } else {
+                alert("Quiz completed!");
+                currentQuestionIndex = 0;
+                displayQuestion();
+            }
+        }
+
+        // Display first question when page loads
+        displayQuestion();
+    </script>
+</body>
+</html>
